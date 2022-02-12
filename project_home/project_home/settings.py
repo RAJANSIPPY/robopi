@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--4q!6o67-2%hde9i7(*kgpvrh*aj8)ixln^=xkwmynjswv16^3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'naivebase.com', 'localhost', '192.168.0.115']
+# ALLOWED_HOSTS = ['127.0.0.1', 'naivebase.com', 'localhost', '192.168.0.115']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

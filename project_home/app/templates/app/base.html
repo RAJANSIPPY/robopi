@@ -1,16 +1,127 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding for django</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-</head>
-<body>
-    <h1>this is body</h1>
-    {% include 'app/navbar.html' %}
-    {% block content %}{% endblock %}
-</body>
+    <head >
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html">
+        <title>NaiveBase-{% block title %}{% endblock title %}</title>
+        <meta name="robots" content="follow"/>
+        <meta http-equiv="expires" content="4200"/>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style_base.css' %}">
+        <link rel="stylesheet" href="{% block style %}{% endblock style %}">
+        {% block style_ex %}{% endblock style_ex %}
+    </head>
+    <body>
+    <div class="grid-container">
+        <header class="header">
+        <div class="nav_bar">
+            <h1 class="logo"><a href="#">Naivebase</a></h1>
+            <ul class="main-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a >
+                <label class="switch" >
+                    <input type="checkbox" id ="change" checked>
+                    <span class="slider round"></span>
+                </label>
+                </a></li>
+            </ul>
+        </div>
+        </header>
+        <div class="filler_left"></div>
+        <div class="filler_right"></div>
+        <div class="main">
+            {% block content %}{% endblock content %}
+        </div>
+        <footer class = "footer">
+            <div class="footer__nav">
+                <div class="col">
+                    <h2>Company</h2>
+                    <ul>
+                    <li>About</li>
+                    <li>Mission</li>
+                    <li>Services</li>
+                    <li>Social</li>
+                    <li>Get in touch</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Products</h2>
+                    <ul>
+                    <li>About</li>
+                    <li>Mission</li>
+                    <li>Services</li>
+                    <li>Social</li>
+                    <li>Get in touch</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Resources</h2>
+                    <ul>
+                    <li>Webmail</li>
+                    <li>Redeem code</li>
+                    <li>WHOIS lookup</li>
+                    <li>Site map</li>
+                    <li>Web templates</li>
+                    <li>Email templates</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Contact</h2>
+                    <ul>
+                    <li>5534 Somewhere In. The World 22193-10212</li>
+                    <li><a class="footer__btn" href="mailto:example@gmail.com">Email Us</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="legal">
+                <p>copyright &copy; {% now 'Y' %} Naivebase</p>
+            </div>
+        </footer>
+    </div>
+    {% block script %}{% endblock script %}
+    <script>
+
+        const themes = {
+            dark: {
+                '--b_color': 'var(--colorb1)',
+                '--nav_b_color': 'var(--colornb1)',
+                '--t_color': 'var(--colort1)',
+                '--nav_br_color': 'var(--colornb2)',
+                '--t_h_color': 'var(--colorth1)',
+                
+            },
+            light: {
+                '--b_color': 'var(--colorb2)',
+                '--nav_b_color': 'var(--colornb2)',
+                '--t_color': 'var(--colort2)',
+                '--nav_br_color': 'var(--colornb1)',
+                '--t_h_color': 'var(--colorth2)',
+            },
+        }
+        var themeIndex = 0;
+        document.getElementById('change').addEventListener('click',function(){
+	        themeIndex++;
+	        var themeCount = Object.keys(themes).length;
+            themeIndex = themeIndex <= themeCount-1 ? themeIndex : 0;
+            var theme = themes[Object.keys(themes)[themeIndex]];
+            activateTheme(theme);
+        });
+        
+        function activateTheme(theme){
+            for (let prop in theme){
+                document.querySelector(':root').style.setProperty(prop, theme[prop]);
+            }
+        }
+
+    </script>
+    </body>
 </html>
